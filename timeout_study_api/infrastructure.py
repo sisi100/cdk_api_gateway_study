@@ -20,7 +20,7 @@ class TimeoutStudyApi(Construct):
 
         # Lambdaの処理中にAPI Gatewayがtimeoutするときの調査
         long_processing_lambda = aws_lambda.Function(
-            self, "NoTimeoutLambda", **self.__build_lambda_param(timeout=10, sleep_time=9)
+            self, "LongProcessingLambda", **self.__build_lambda_param(timeout=10, sleep_time=9)
         )  # 9秒寝ているlambda
         api.root.add_resource("gateway-timeout").add_method(
             **self.__build_api_method_param(long_processing_lambda)
